@@ -6,15 +6,17 @@ import Resumo from "./Pages/Resumo";
 function App() {
 
   return (
-    <>
-      <DataContextProvider>
+
+    <DataContextProvider>
+      <div className="container">
         <Sidenav />
         <main>
           <Header />
           <Resumo />
         </main>
-      </DataContextProvider>
-    </>
+      </div>
+    </DataContextProvider>
+
   );
 }
 
