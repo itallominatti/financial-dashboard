@@ -23,16 +23,12 @@ Este é um projeto usando React, Vite, React Router DOM, onde você pode consult
 
 ## Como Usar
 
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
-2. Instale as dependências:
+1. Instale as dependências:
     ```bash
     cd seu-repositorio
     npm install
     ```
-3. Inicie o projeto:
+2. Inicie o projeto:
     ```bash
     npm run dev
     ```
