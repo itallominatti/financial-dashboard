@@ -18,7 +18,10 @@ body {
     margin: 0px.
     color: var(--color-2);
     background-color: var(--color-4);
+    outline: none;
+
 }
+
 
 .box {
     padding: var(--gap);
@@ -162,4 +165,50 @@ ul {
     color: inherit;
 }
 
+/* small screen */
 
+@media (max-width: 1000px) {
+    .resumo {
+        flex-direction: column;
+    }
+
+    .daterange {
+        grid-template-columns: 1fr;
+    }
+
+    .datarange *:last-child {
+        grid-row: 1;
+    }
+}
+
+@media (max-width: 700px) {
+    html {
+        --gap-s : 0.5rem;
+        --gap: .75rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .flex {
+        flex-direction: column;
+    }
+
+    .sidenav ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .sidenav li a {
+        font-size: .875rem;
+    }
+
+    .venda {
+        grid-template-columns: 1fr;
+    }
+
+    .venda div:last-child {
+        justify-self: start;
+    }
+}

@@ -1,61 +1,45 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { IVenda } from "../Context/DataContext";
 
-const dadosGrafico = [
-    {
-        data: '2023-05-03',
-        pago: 4000,
-        processando: 3000,
-        falha: 2000,
-    },
-    {
-        data: '2023-05-04',
-        pago: 2000,
-        processando: 4000,
-        falha: 3000,
-    },
-    {
-        data: '2023-05-05',
-        pago: 3000,
-        processando: 4000,
-        falha: 2000,
-    },
-    {
-        data: '2023-05-06',
-        pago: 4000,
-        processando: 3000,
-        falha: 2000,
-    },
-    {
-        data: '2023-05-07',
-        pago: 5000,
-        processando: 2000,
-        falha: 3000,
-    },
-    {
-        data: '2023-05-08',
-        pago: 3000,
-        processando: 2000,
-        falha: 4000,
-    },
-    {
-        data: '2023-05-09',
-        pago: 4000,
-        processando: 3000,
-        falha: 2000,
-    },
+type VendaDia = {
+    data: string;
+    pago: number;
+    processando: number;
+    falha: number;
+}
 
-]
+function transformData(data: IVenda[]): VendaDia[] {
+    const dias = data.reduce((acc, item) => {
+        const dia = item.data.split(' ')[0];
+        if (!acc[dia]) {
+            acc[dia] = {
+                data: dia,
+                pago: 0,
+                processando: 0,
+                falha: 0,
+            };
+        }
+        if (item.status === 'pago') {
+            acc[dia].pago += item.preco;
+        } else if (item.status === 'processando') {
+            acc[dia].processando += item.preco;
+        } else if (item.status === 'falha') {
+            acc[dia].falha += item.preco;
+        }
+        return acc;
+    }, {} as Record<string, VendaDia>);
+
+    return Object.values(dias);
+}
 
 const GraficoVendas = ({ data }: { data: IVenda[] }) => {
-
+    const transformedData = transformData(data);
     return (
         <ResponsiveContainer height={400} width={"99%"}>
             <LineChart
                 width={400}
                 height={400}
-                data={dadosGrafico}
-
+                data={transformedData}
             >
                 <XAxis dataKey="data" />
                 <YAxis />
@@ -67,8 +51,7 @@ const GraficoVendas = ({ data }: { data: IVenda[] }) => {
                 <Line type="monotone" dataKey="falha" stroke="#f00000" />
             </LineChart>
         </ResponsiveContainer>
-
-    )
+    );
 }
 
 export default GraficoVendas;
