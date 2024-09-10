@@ -106,13 +106,19 @@ ul {
     flex: 1;
     font-size: 1.125rem;
     text-decoration: none;
+    margin: 0.25rem 0px;
     color: var(--color-1);
     padding: var(--gap-s) 0px;
 }
 
 .sidenav li:hover span {
     background: var(--color-3);
-    cursor: pointer;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* daterange */
